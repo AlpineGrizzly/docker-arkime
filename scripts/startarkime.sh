@@ -51,6 +51,10 @@ then
     fi
 fi
 
+# Replace to a valid link to a manuf page for wireshark 
+sed -i 's@master/manuf@release-4.0/manuf@g' /opt/arkime/bin/arkime_update_geo.sh
+
+
 echo "Look at log files for errors"
 echo "  /data/logs/viewer.log"
 echo "  /data/logs/capture.log"
@@ -62,6 +66,6 @@ if [ "$VIEWER" = "on" ]
 then
     echo "Launch viewer..."
     pushd $ARKIMEDIR/viewer
-    exec $ARKIMEDIR/bin/node viewer.js -c $ARKIMEDIR/etc/config.ini --host $ARKIME_HOSTNAME >> $ARKIMEDIR/logs/viewer.log 2>&1
+    (exec $ARKIMEDIR/bin/node viewer.js -c $ARKIMEDIR/etc/config.ini --host $ARKIME_HOSTNAME >> $ARKIMEDIR/logs/viewer.log 2>&1) && (exec /opt/arkime/bin/arkime_update_geo.sh)
     popd
 fi
