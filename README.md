@@ -82,3 +82,13 @@ docker exec -it <container_name> \
 ```
 
 If parameter `-d` is omitted, the script asks if you want to import the default direcotry `/data/pcap`.
+
+### Wiping pcap data from Arkime
+To delete data that has been imported into arkime, take a gander at `scripts/wipe-pcap-data.sh`. It can be exected inside of the container like so:
+
+```sh
+docker exec -it <container_name> \ 
+    /data/wipe-pcap-data.sh
+```
+
+WARNING: This will delete pcaps that are in the shared `docker-arkime/pcap/` folder, so be sure that you have a copy saved elsewhere. 
