@@ -8,7 +8,7 @@ RUN apt-get -qq update && \
     apt-get install -yq curl libmagic-dev wget logrotate
 
 # Declare args
-ARG ARKIME_VERSION=4.3.1
+ARG ARKIME_VERSION=4.4.0
 ARG UBUNTU_VERSION
 ARG ARKIME_DEB_PACKAGE="arkime_${ARKIME_VERSION}-1_amd64.deb"
 
@@ -43,6 +43,6 @@ RUN chmod 755 /data/*.sh
 
 VOLUME ["/data/pcap", "/data/config", "/data/logs"]
 EXPOSE 8005
-WORKDIR "$ARKIMEDIR"
+WORKDIR "/data/"
 
 ENTRYPOINT ["/data/startarkime.sh"]
